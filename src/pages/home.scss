@@ -1,7 +1,9 @@
+$green1: #aaff00;
+$green2: #05ff00;
+
 .home {
   &-logo {
     width: 22rem;
-    // fill: red;
     
     & .m1,
     & .c1,
@@ -10,7 +12,7 @@
     & .u1,
     & .e1,
     & .l1 {
-      fill: blue;
+      fill: $green1;
     }
 
     & .c2,
@@ -21,7 +23,16 @@
     & .r1,
     & .o1,
     & .s2 {
-      fill: green;
+      fill: $green2;
     }
+  }
+
+  &-subtitle, &-subtitle-anime {
+    display: block;
+    font-family: 'Caveat Brush', cursive;
+    font-size: 3rem;
+    letter-spacing: 5px;
+    width: 22rem;
+    text-align: center;
   }
 }
