@@ -25,7 +25,7 @@ function getWindowSizes(){
   }
 }
 
-export default function useWindow(){
+export function useWindow(){
 
   let [ windowProps, setWindowProps ] = useState( {} );
 
