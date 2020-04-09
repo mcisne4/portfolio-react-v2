@@ -19,13 +19,13 @@ export default function HomeSubtitleAnimated({className, timelineStart}){
       delay: anime.stagger(50, { from: "center"}),  
     }, timelineStart);
 
-    // --- Move Subtitle ---
-    tl.add({
-      targets: "." + className,
-      translateX: [50, 0],
-      translateY: [50, 0],
-      duration: 1000
-    });
+    // // --- Move Subtitle ---
+    // tl.add({
+    //   targets: "." + className,
+    //   translateX: [50, 0],
+    //   translateY: [50, 0],
+    //   duration: 1000
+    // });
   }, [ className, timelineStart ]);
 
 
