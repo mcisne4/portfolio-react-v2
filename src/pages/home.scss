@@ -2,6 +2,27 @@ $green1: #aaff00;
 $green2: #05ff00;
 
 .home {
+  // --- Containers ---
+  &-page {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+
+  &-flex-container {
+    display:  flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid red;
+    width: 22rem;
+    height: 19rem;
+  }
+
+  // --- Main Content ---
   &-logo {
     width: 22rem;
     
@@ -27,12 +48,57 @@ $green2: #05ff00;
     }
   }
 
-  &-subtitle, &-subtitle-anime {
+  &-subtitle,
+  &-subtitle-anime {
     display: block;
     font-family: 'Caveat Brush', cursive;
     font-size: 3rem;
     letter-spacing: 5px;
     width: 22rem;
     text-align: center;
+  }
+
+  &-message {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #9a9a9a;
+    max-width: 20rem;
+    text-align: center;
+    margin-top: .5rem;
+  }
+
+  &-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 2rem 2rem;
+
+    &-link {
+      text-decoration: none;
+      border: 1px solid #aaff00;
+      color: #aaff00;
+      background-color: #121212;
+      border-radius: 0.5rem;
+      text-align: center;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 0 20px rgba($color: #aaff00, $alpha: 0.1);
+
+      &:hover {
+        background-color: #aaff00;
+        color: #121212;
+        font-weight: 600;
+        box-shadow: 0 0 20px rgba($color: #aaff00, $alpha: 0.5);
+      }
+    }
+  }
+
+  // --- Background Canvas ---
+  &-canvas {
+    position: absolute;
+    border: 1px solid indigo;
+    top: 0;
+    left: 0;
+    bottom: 0;
   }
 }

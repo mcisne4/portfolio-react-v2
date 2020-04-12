@@ -4,7 +4,8 @@ import anime from "animejs/lib/anime.es";
 export default function HomeSubtitleAnimated({className, timelineStart}){
   useEffect(() => {
     const tl = anime.timeline({
-      easing: "easeOutQuad"
+      easing: "easeOutQuad",
+      autoplay: false
     });
 
     // --- Animate Letters ---
@@ -19,13 +20,14 @@ export default function HomeSubtitleAnimated({className, timelineStart}){
       delay: anime.stagger(50, { from: "center"}),  
     }, timelineStart);
 
-    // // --- Move Subtitle ---
-    // tl.add({
-    //   targets: "." + className,
-    //   translateX: [50, 0],
-    //   translateY: [50, 0],
-    //   duration: 1000
-    // });
+    tl.play();
+
+    window.addEventListener("resize", tl.restart);
+
+    return () => {
+      window.removeEventListener("resize", tl.restart);
+    }
+
   }, [ className, timelineStart ]);
 
 

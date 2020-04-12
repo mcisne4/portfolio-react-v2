@@ -1,3 +1,5 @@
+import anime from "animejs/lib/anime.es";
+
 const path_data = {
   m1: [
     { duration: 100, value: "M 11 135 C 11 135 11 135 11 135 C 11 135 11 135 11 135 C 11 135 11 135 11 135 S 11 135 11 135 C 11 135 11 135 11 135 L 11 135 C 11 135 11 135 11 135 C 11 135 011 135 011 135 L 11 135 C 11 135 11 135 11 135 C 11 135 11 135 11 135 C 11 135 11 135 11 135 Z"},
@@ -105,7 +107,7 @@ const path_data = {
 };
 
 
-export function animate(className, timelineStart=0){
+function animate(className, timelineStart=0){
   let sequence = [];
 
   // --- Animate First Name Letters ---
@@ -159,4 +161,19 @@ export function animate(className, timelineStart=0){
   }
 
   return sequence;
+}
+
+export function getTimeline(className, timelineStart=0){
+  const animateSequence = animate(className, timelineStart);
+
+  const timeline = anime.timeline({
+    easing: "easeOutQuad",
+    autoplay: false
+  });
+
+  animateSequence.forEach( item => {
+    timeline.add( item.animate, item.startAt );
+  });
+
+  return timeline;
 }
