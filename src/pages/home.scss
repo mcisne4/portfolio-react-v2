@@ -1,3 +1,4 @@
+$background: #121212;
 $green1: #aaff00;
 $green2: #05ff00;
 
@@ -48,14 +49,18 @@ $green2: #05ff00;
     }
   }
 
-  &-subtitle,
-  &-subtitle-anime {
+  &-subtitle {
     display: block;
     font-family: 'Caveat Brush', cursive;
     font-size: 3rem;
     letter-spacing: 5px;
     width: 22rem;
     text-align: center;
+    overflow: hidden;
+
+    & .letter {
+      display: inline-block;
+    }
   }
 
   &-message {
@@ -91,6 +96,15 @@ $green2: #05ff00;
         box-shadow: 0 0 20px rgba($color: #aaff00, $alpha: 0.5);
       }
     }
+  }
+
+  &-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: $background;
   }
 
   // --- Background Canvas ---

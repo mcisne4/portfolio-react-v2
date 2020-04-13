@@ -3,6 +3,8 @@ dependencies:
   '@testing-library/react': 9.5.0_react-dom@16.13.1+react@16.13.1
   '@testing-library/user-event': 7.2.1
   animejs: 3.1.0
+  framer-motion: 1.10.3_react-dom@16.13.1+react@16.13.1
+  gsap: 3.2.6
   node-sass: 4.13.1
   react: 16.13.1
   react-dom: 16.13.1_react@16.13.1
@@ -1084,6 +1086,18 @@ packages:
     dev: false
     resolution:
       integrity: sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
+  /@emotion/is-prop-valid/0.8.8:
+    dependencies:
+      '@emotion/memoize': 0.7.4
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==
+  /@emotion/memoize/0.7.4:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
   /@hapi/address/2.1.4:
     dev: false
     resolution:
@@ -1295,6 +1309,20 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
+  /@popmotion/easing/1.0.2:
+    dev: false
+    resolution:
+      integrity: sha512-IkdW0TNmRnWTeWI7aGQIVDbKXPWHVEYdGgd5ZR4SH/Ty/61p63jCjrPxX1XrR7IGkl08bjhJROStD7j+RKgoIw==
+  /@popmotion/popcorn/0.4.4:
+    dependencies:
+      '@popmotion/easing': 1.0.2
+      framesync: 4.0.4
+      hey-listen: 1.0.8
+      style-value-types: 3.1.7
+      tslib: 1.11.1
+    dev: false
+    resolution:
+      integrity: sha512-jYO/8319fKoNLMlY4ZJPiPu8Ea8occYwRZhxpaNn/kZsK4QG2E7XFlXZMJBsTWDw7I1i0uaqyC4zn1nwEezLzg==
   /@sheerun/mutationobserver-shim/0.3.3:
     dev: false
     resolution:
@@ -4870,6 +4898,33 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-QpD60n8T6Jvn8zeZxrxaCr//DRk=
+  /framer-motion/1.10.3_react-dom@16.13.1+react@16.13.1:
+    dependencies:
+      '@popmotion/easing': 1.0.2
+      '@popmotion/popcorn': 0.4.4
+      framesync: 4.0.4
+      hey-listen: 1.0.8
+      popmotion: 9.0.0-beta-8
+      react: 16.13.1
+      react-dom: 16.13.1_react@16.13.1
+      style-value-types: 3.1.7
+      stylefire: 7.0.3
+      tslib: 1.11.1
+    dev: false
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+    peerDependencies:
+      react: ^16.8
+      react-dom: ^16.8
+    resolution:
+      integrity: sha512-VooCzGWg7brSO4Gc0YwpY5AadJe4OPS74ZyOlOHWll5rMXCoOc6Ia3uDQ6RfOJlwCP/D9TQuRGtboyJiVXjVcw==
+  /framesync/4.0.4:
+    dependencies:
+      hey-listen: 1.0.8
+      tslib: 1.11.1
+    dev: false
+    resolution:
+      integrity: sha512-mdP0WvVHe0/qA62KG2LFUAOiWLng5GLpscRlwzBxu2VXOp6B8hNs5C5XlFigsMgrfDrr2YbqTsgdWZTc4RXRMQ==
   /fresh/0.5.2:
     dev: false
     engines:
@@ -5148,6 +5203,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
+  /gsap/3.2.6:
+    dev: false
+    resolution:
+      integrity: sha512-QX7WQWZUAooS9tOCYg4kKLcnjBreA4Xyu11EVx6zp4BbKijnMK+NtzkB47las/E0luFE84hGscOZm5vd13KzZA==
   /gud/1.0.0:
     dev: false
     resolution:
@@ -5282,6 +5341,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
+  /hey-listen/1.0.8:
+    dev: false
+    resolution:
+      integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==
   /history/4.10.1:
     dependencies:
       '@babel/runtime': 7.9.2
@@ -8300,6 +8363,17 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==
+  /popmotion/9.0.0-beta-8:
+    dependencies:
+      '@popmotion/easing': 1.0.2
+      '@popmotion/popcorn': 0.4.4
+      framesync: 4.0.4
+      hey-listen: 1.0.8
+      style-value-types: 3.1.7
+      tslib: 1.11.1
+    dev: false
+    resolution:
+      integrity: sha512-6eQzqursPvnP7ePvdfPeY4wFHmS3OLzNP8rJRvmfFfEIfpFqrQgLsM50Gd9AOvGKJtYJOFknNG+dsnzCpgIdAA==
   /portfinder/1.0.25:
     dependencies:
       async: 2.6.3
@@ -10746,6 +10820,23 @@ packages:
       node: '>= 0.12.0'
     resolution:
       integrity: sha512-XK+uv9kWwhZMZ1y7mysB+zoihsEj4wneFWAS5qoiLwzW0WzSqMrrsIy+a3zkQJq0ipFtBpX5W3MqyRIBF/WFGg==
+  /style-value-types/3.1.7:
+    dependencies:
+      hey-listen: 1.0.8
+      tslib: 1.11.1
+    dev: false
+    resolution:
+      integrity: sha512-jPaG5HcAPs3vetSwOJozrBXxuHo9tjZVnbRyBjxqb00c2saIoeuBJc1/2MtvB8eRZy41u/BBDH0CpfzWixftKg==
+  /stylefire/7.0.3:
+    dependencies:
+      '@popmotion/popcorn': 0.4.4
+      framesync: 4.0.4
+      hey-listen: 1.0.8
+      style-value-types: 3.1.7
+      tslib: 1.11.1
+    dev: false
+    resolution:
+      integrity: sha512-Q0l7NSeFz/OkX+o6/7Zg3VZxSAZeQzQpYomWmIpOehFM/rJNMSLVX5fgg6Q48ut2ETNKwdhm97mPNU643EBCoQ==
   /stylehacks/4.0.3:
     dependencies:
       browserslist: 4.11.1
@@ -11900,6 +11991,8 @@ specifiers:
   '@testing-library/react': ^9.5.0
   '@testing-library/user-event': ^7.2.1
   animejs: ^3.1.0
+  framer-motion: ^1.10.3
+  gsap: ^3.2.6
   node-sass: ^4.13.1
   react: ^16.13.1
   react-dom: ^16.13.1

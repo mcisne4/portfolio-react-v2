@@ -1,31 +1,40 @@
 import React, { useEffect} from "react";
-import anime from "animejs/lib/anime.es";
+import gsap from "gsap";
 
-export default function HomeSubtitleAnimated({className, timelineStart}){
+export default function HomeSubtitleAnimated({className, timelineStart = 0}){
   useEffect(() => {
-    const tl = anime.timeline({
-      easing: "easeOutQuad",
-      autoplay: false
-    });
+    let timeline;
+    
+    function animate(){
+      timeline = gsap.timeline();
+      timeline.fromTo(".letter", {
+        scale: 0,
+        y: 10,
+      }, {
+        scale: 1,
+        y: 0,
+        ease: "circ:in",
+        duration: 0.5,
+        stagger: {
+          amount: 0.1,
+          from: "center"
+        }
+      }, timelineStart);
+      timeline.play();
+    }
 
-    // --- Animate Letters ---
-    tl.add({
-      targets: "." + className + " .letter",
-      opacity: [0, 1],
-      translateX: [10, 0],
-      rotate: [10, 0],
-      translateY: [-10, 0],
-      scale: [0, 1],
-      duration: 100,
-      delay: anime.stagger(50, { from: "center"}),  
-    }, timelineStart);
+    function restartAnimation(){
+      timeline.progress(0);
+      timeline.kill();
+      animate();
+    }
 
-    tl.play();
-
-    window.addEventListener("resize", tl.restart);
+    animate();
+    window.addEventListener("resize", restartAnimation);
 
     return () => {
-      window.removeEventListener("resize", tl.restart);
+      window.removeEventListener("resize", restartAnimation);
+      timeline.kill();
     }
 
   }, [ className, timelineStart ]);
