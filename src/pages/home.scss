@@ -110,9 +110,10 @@ $green2: #05ff00;
   // --- Background Canvas ---
   &-canvas {
     position: absolute;
-    border: 1px solid indigo;
+    // border: 1px solid indigo;
     top: 0;
     left: 0;
     bottom: 0;
+    z-index: -10;
   }
 }
