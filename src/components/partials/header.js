@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback, useRef } from "react";
+import React, { useContext, useState, useCallback, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import gsap from "gsap";
 // import { NavLink } from "react-router-dom";
@@ -13,7 +13,7 @@ import NavDropdown from "../../components/nav-header/nav-dropdown";
 
 export default function PageHeader(){
   const { outerWidth, fontSize } = useContext(WindowContext);
-  const [ navMenu, setNavMenu ] = useState(true);
+  const [ navMenu, setNavMenu ] = useState(false);
   let menu = useRef();
   let history = useHistory();
 
@@ -22,12 +22,23 @@ export default function PageHeader(){
     redirectPath !== undefined && history.push(redirectPath);
   };
 
+  useEffect( () => {
+    const navMenuFalse = () => {
+      setNavMenu( false );
+    }
+
+    document.addEventListener("resize", navMenuFalse);
+
+    return () => {
+      document.removeEventListener("resize", navMenuFalse);
+    }
+  });
+
   const toggleMenu = useCallback(
     () => {
       if(navMenu === false){
         setNavMenu(true);
       } else {
-        // setNavMenu(false);
         hideMenuAnimation(menu.current, () => {
           setNavMenu(false);
         });
@@ -40,7 +51,7 @@ export default function PageHeader(){
     <div className="nav-background">
       <div className="nav-container">
         <Logo className="nav-logo" />
-        { outerWidth >= fontSize * 420 ?
+        { outerWidth >= fontSize * 42 ?
           <NavLinksBar /> :
           <NavButton
             onClick={ toggleMenu }

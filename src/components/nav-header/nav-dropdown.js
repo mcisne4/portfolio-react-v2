@@ -11,18 +11,10 @@ export default function NavDropdown({hideMenu, menu, hideMenuAnimation}){
     hideMenuAnimation(menu.current, hideMenu, redirectpath);
   }
 
-  const nonMenuClick = (e) => {
-    // const closestElement = menu.current.closest(".nav-menu");
-    // console.log(closestElement);
-    // const elementClasses = e.target.className;
-    // if(elementClasses.includes("nav-menu-link")){
-    //   console.log("ok");
-    // } else {
-    //   console.log("NOPE!:", elementClasses);
-    // }
-  }
-
+  
   useEffect( () => {
+    console.log("loaded");
+    // --- Timeline Animation ---
     const tl = gsap.timeline({
       defaults: {
         ease: "circ:in"
@@ -66,9 +58,26 @@ export default function NavDropdown({hideMenu, menu, hideMenuAnimation}){
   
     tl.play();
 
+    // --- Event Listener ---
+    const nonMenuClick = (e) => {
+      const closestElement = e.target.closest(".nav-menu");
+      if(closestElement === null){
+        hideMenuAnimation(menu.current, hideMenu);
+      }
+    }
+
+    const disableMenu = () => {
+      hideMenuAnimation(menu.current, hideMenu);
+    }
+
     document.addEventListener("click", nonMenuClick);
-  
-  }, [menu]);
+    document.addEventListener("resize", disableMenu);
+ 
+    return () => {
+      document.removeEventListener("click", nonMenuClick);
+      document.removeEventListener("click", disableMenu);
+    }
+  }, [menu, hideMenuAnimation, hideMenu]);
 
   return (
     <div className="nav-menu" ref={ menu }>
