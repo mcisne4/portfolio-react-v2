@@ -1,7 +1,5 @@
 import React, { useContext, useState, useCallback, useRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import gsap from "gsap";
-// import { NavLink } from "react-router-dom";
 
 import { WindowContext } from "../../utils/window/windowContext";
 
@@ -13,100 +11,109 @@ import NavDropdown from "../../components/nav-header/nav-dropdown";
 
 export default function PageHeader(){
   const { outerWidth, fontSize } = useContext(WindowContext);
-  const [ navMenu, setNavMenu ] = useState(false);
+  const [ navMenuDisplay, setNavMenuDisplay ] = useState(false);
   let menu = useRef();
-  let history = useHistory();
 
-  const hideMenu = (redirectPath=undefined) => {
-    setNavMenu(false);
-    redirectPath !== undefined && history.push(redirectPath);
-  };
+  // --- Show Menu State ---
+  const showMenu = useCallback(
+    () => {
+    setNavMenuDisplay(true);
+    },
+    [setNavMenuDisplay]
+  );
 
+  // --- Hide Menu State ---
+  const hideMenu = useCallback(
+    () => {
+      setNavMenuDisplay(false);
+    },
+    [setNavMenuDisplay]
+  )
+
+  // --- Hide Menu Animation ---
+  const hideMenuAnimation = (onComplete) => {
+
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power4:in"
+      },
+      paused: true,
+      onComplete: () => {
+        onComplete();
+        tl.kill();
+      }
+    });
+  
+    tl.to(menu.current, {
+      borderBottomColor: "#ff000000",
+      borderTopColor: "#ff000000",
+      borderLeftColor: "#ff000000",
+      borderRightColor: "#ff000000",
+      duration: 0.25
+    });
+  
+    tl.fromTo(menu.current.children, {
+      opacity: 1,
+      scaleY: 1,
+      scaleX: 1,
+      transformOrigin: "top center"
+    }, {
+      opacity: 0,
+      scaleY: 0,
+      scaleX: 0,
+      stagger: {
+        each: .1,
+        from: "end"
+      },
+      duration: .5
+    });
+  
+    tl.play();
+  }
+
+  // --- Resize Event Listener ---
   useEffect( () => {
-    const navMenuFalse = () => {
-      setNavMenu( false );
-    }
-
-    document.addEventListener("resize", navMenuFalse);
+    window.addEventListener("resize", hideMenu);
 
     return () => {
-      document.removeEventListener("resize", navMenuFalse);
+      window.removeEventListener("resize", hideMenu);
     }
-  });
+  }, [hideMenu]);
 
-  const toggleMenu = useCallback(
-    () => {
-      if(navMenu === false){
-        setNavMenu(true);
-      } else {
-        hideMenuAnimation(menu.current, () => {
-          setNavMenu(false);
-        });
-      }
-    },
-    [navMenu],
-  );
+
+  // --- Nav Components ---
+  const NavItems = () => {
+    if(outerWidth >= fontSize * 42){
+      return (
+        <NavLinksBar />
+      );
+    } else {
+      return (
+        <>
+          <NavButton
+            showMenu={ showMenu }
+            hideMenu={ hideMenu }
+            hideMenuAnimation={ hideMenuAnimation }
+            navMenuDisplay={ navMenuDisplay }
+          />
+          { navMenuDisplay === true &&
+            <NavDropdown
+              menuRef={ menu }
+              hideMenu={ hideMenu }
+              hideMenuAnimation={ hideMenuAnimation }
+            />
+          }
+        </>
+      )
+    }
+  }
 
   return (
     <div className="nav-background">
       <div className="nav-container">
         <Logo className="nav-logo" />
-        { outerWidth >= fontSize * 42 ?
-          <NavLinksBar /> :
-          <NavButton
-            onClick={ toggleMenu }
-            menu={ menu.current }
-          />
-        }
-        { navMenu === true &&
-          <NavDropdown
-            menu={ menu }
-            hideMenu={ hideMenu }
-            hideMenuAnimation={ hideMenuAnimation }
-          />}
+        <NavItems />
       </div>
     </div>
   );
 };
-
-
-function hideMenuAnimation(element, onComplete, redirectPath=undefined){
-  const tl = gsap.timeline({
-    defaults: {
-      ease: "power4:in"
-    },
-    paused: true,
-    onComplete: () => {
-      onComplete(redirectPath);
-      tl.kill();
-    }
-  });
-
-  tl.to(element, {
-    borderBottomColor: "#ff000000",
-    borderTopColor: "#ff000000",
-    borderLeftColor: "#ff000000",
-    borderRightColor: "#ff000000",
-    duration: 0.25
-  });
-
-  tl.fromTo(element.children, {
-    opacity: 1,
-    scaleY: 1,
-    scaleX: 1,
-    transformOrigin: "top center"
-  }, {
-    opacity: 0,
-    scaleY: 0,
-    scaleX: 0,
-    stagger: {
-      each: .1,
-      from: "end"
-    },
-    duration: .5
-  });
-
-  tl.play();
-}
-
-

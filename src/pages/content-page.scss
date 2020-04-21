@@ -103,6 +103,8 @@ $nav-height: 3rem;
     background-color: transparent;
     padding-top: 2px;
     box-shadow: 0 0 10px #ffffff33;
+    cursor: pointer;
+    outline: none;
 
     &-lines {
       stroke: #ccc;
@@ -130,7 +132,6 @@ $nav-height: 3rem;
     max-height: calc(100vh - 3rem);
     overflow: auto;
     z-index: 10;
-    opacity: 0;
 
     &-link {
       color: #ccc;
